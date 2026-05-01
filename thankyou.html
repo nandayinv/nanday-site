@@ -1,15 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Request Received</title>
-</head>
-<body style="background:#0d0d0b; color:#f5f0e8; font-family:sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; text-align:center;">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Request Received — Nanday</title>
 
-<div>
-  <h2 style="color:#b8963e;">Request Submitted</h2>
-  <p>Thank you. Our team will review your request and get back to you.</p>
-  <a href="index.html" style="color:#b8963e;">Return to Home</a>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #0d0d0b;
+  --gold: #b8963e;
+  --cream: #f5f0e8;
+}
+
+/* ───────── BASE ───────── */
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: var(--cream);
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+/* ───────── CURSOR ───────── */
+.cursor {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(184,150,62,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  transition: all 0.12s ease;
+}
+
+/* ───────── BACKGROUND MOUNTAINS ───────── */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* slight parallax movement */
+.parallax {
+  animation: drift 10s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* dark overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(13,13,11,0.95));
+}
+
+/* ───────── CONTENT ───────── */
+.wrapper {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 520px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* gold line reveal */
+.line {
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 28px;
+  animation: lineReveal 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* heading */
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+/* text */
+p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(245,240,232,0.65);
+  margin-bottom: 30px;
+}
+
+/* button */
+a {
+  display: inline-block;
+  padding: 14px 34px;
+  border: 1px solid rgba(184,150,62,0.5);
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  transition: 0.3s;
+}
+
+a:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ───────── EMAIL SENT PULSE ───────── */
+.pulse {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: pulse 1.6s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(2.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* ───────── ANIMATIONS ───────── */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineReveal {
+  to {
+    width: 90px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- Background mountains -->
+<div class="bg parallax">
+<svg viewBox="0 0 1440 900">
+  <path d="M0,800 L150,740 L300,780 L450,710 L600,760 L750,690 L900,740 L1050,680 L1200,720 L1440,690 L1440,900 L0,900 Z"
+        fill="#141310"/>
+  <path d="M0,820 L200,780 L400,810 L600,760 L800,800 L1000,750 L1200,790 L1440,760 L1440,900 L0,900 Z"
+        fill="#0f0f0e"/>
+</svg>
 </div>
+
+<div class="overlay"></div>
+
+<!-- Content -->
+<div class="wrapper">
+
+  <div class="pulse"></div>
+
+  <div class="line"></div>
+
+  <h1>Request Received</h1>
+
+  <p>Thank You. Access will be granted upon review.</p>
+
+  <a href="index.html">Return to Nanday</a>
+</div>
+
+<script>
+/* ───── CURSOR ───── */
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("ring");
+
+let mx=0, my=0, rx=0, ry=0;
+
+document.addEventListener("mousemove", e => {
+  mx = e.clientX;
+  my = e.clientY;
+  cursor.style.left = mx + "px";
+  cursor.style.top = my + "px";
+});
+
+function animate() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + "px";
+  ring.style.top = ry + "px";
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
