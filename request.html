@@ -101,11 +101,19 @@ form {
 </div>
 
 <script>
+// STEP 1: force page reset + remove any auto focus
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
-  document.activeElement.blur();
+
+  setTimeout(() => {
+    document.querySelectorAll("input, textarea").forEach(el => {
+      el.blur();
+    });
+  }, 50);
 });
 
+
+// STEP 2: form submission (unchanged logic, just clean scope)
 const form = document.querySelector("form");
 
 form.addEventListener("submit", function(e) {
