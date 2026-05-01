@@ -74,10 +74,15 @@ body.fade-out {
 </div>
 
 <script>
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+  document.activeElement.blur();
+});
+
 const form = document.querySelector("form");
 
 form.addEventListener("submit", function(e) {
-  e.preventDefault(); // stop instant redirect
+  e.preventDefault();
 
   const data = new FormData(form);
 
@@ -87,10 +92,8 @@ form.addEventListener("submit", function(e) {
     headers: { 'Accept': 'application/json' }
   }).then(() => {
 
-    // fade out page
     document.body.classList.add("fade-out");
 
-    // redirect after fade
     setTimeout(() => {
       window.location.href = "thankyou.html";
     }, 600);
