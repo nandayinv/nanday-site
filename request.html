@@ -66,21 +66,32 @@ button {
 </div>
 
 <script>
-document.getElementById("access-form").addEventListener("submit", async function(e) {
-  e.preventDefault(); // stop default redirect
+const form = document.getElementById("access-form");
 
-  const form = e.target;
-  const data = new FormData(form);
+console.log("Script loaded"); // debug
 
-  await fetch(form.action, {
-    method: form.method,
-    body: data,
-    headers: { 'Accept': 'application/json' }
+if (form) {
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    console.log("Form submit intercepted"); // debug
+
+    const data = new FormData(form);
+
+    try {
+      await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      window.location.href = "thankyou.html";
+    } catch (error) {
+      console.error("Error:", error);
+    }
   });
-
-  // Redirect manually
-  window.location.href = "thankyou.html";
-});
+} else {
+  console.log("Form not found");
+}
 </script>
 
 </body>
