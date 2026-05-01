@@ -45,7 +45,7 @@ button {
 <div class="box">
   <h2>Request Access</h2>
 
-  <form action="https://formspree.io/f/xwvykvnz" method="POST">
+ <form id="access-form" action="https://formspree.io/f/xwvykvnz" method="POST">
     <input type="hidden" name="form-name" value="Investor Access Request">
     <input type="hidden" name="_redirect" value="https://hiyavishwanath.github.io/nanday-site/thankyou.html">
 
@@ -64,6 +64,24 @@ button {
     </form>
 
 </div>
+
+<script>
+document.getElementById("access-form").addEventListener("submit", async function(e) {
+  e.preventDefault(); // stop default redirect
+
+  const form = e.target;
+  const data = new FormData(form);
+
+  await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  // Redirect manually
+  window.location.href = "thankyou.html";
+});
+</script>
 
 </body>
 </html>
