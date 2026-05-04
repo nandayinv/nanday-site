@@ -542,6 +542,49 @@
     padding-left: 32px;
   }
 
+  /* ───────── CLOSING SECTION ───────── */
+  .closing {
+    padding: 120px 20px 80px;
+    text-align: center;
+    background: #0d0d0b;
+  }
+
+  .closing-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .closing-line {
+    width: 0;
+    height: 1px;
+    background: #b8963e;
+    margin: 0 auto 24px;
+    animation: lineReveal 1.2s ease forwards;
+  }
+
+  .closing h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #b8963e;
+    font-size: 1.2rem;
+    opacity: 0.85;
+  }
+
+  /* social icon */
+  .social-icon {
+    display: inline-block;
+    margin-top: 20px;
+    color: #b8963e;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+
+  .social-icon:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
   /* ── FOOTER ── */
   footer {
     padding: 32px 60px;
@@ -878,6 +921,20 @@ display:block;
   </div>
   <div>
     <p class="contact-statement">"Come join us in our journey — the collaborations can take us higher."</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-inner">
+    <div class="closing-line"></div>
+    <h3>Enduring Capital</h3>
+
+    <a href="https://x.com/nandayadvisory" target="_blank" class="social-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M18.9 2H22L14.5 10.3L23 22H16.3L11 14.8L4.7 22H1.6L9.6 13.1L1.5 2H8.4L13.2 8.6L18.9 2ZM17.5 20H19.2L7.5 3.9H5.7L17.5 20Z" fill="currentColor"/>
+      </svg>
+    </a>
+
   </div>
 </section>
 
