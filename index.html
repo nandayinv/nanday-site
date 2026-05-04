@@ -549,23 +549,10 @@
     text-align: center;
     background: transparent;
   }
-  @keyframes lineReveal {
-    to {
-      width: 80px;
-    }
-  }
 
   .closing-inner {
     max-width: 600px;
     margin: 0 auto;
-  }
-
-  .closing-line {
-    width: 0;
-    height: 1px;
-    background: #b8963e;
-    margin: 0 auto 24px;
-    animation: lineReveal 1.2s ease forwards;
   }
 
   .closing h3 {
@@ -575,20 +562,27 @@
     color: #b8963e;
     font-size: 1.2rem;
     opacity: 0.85;
+    margin-bottom: 10px;
   }
 
   /* social icon */
   .social-icon {
-    display: inline-block;
-    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(184,150,62,0.25);
+    border-radius: 50%;
     color: #b8963e;
-    opacity: 0.6;
-    transition: 0.3s;
+    opacity: 0.8;
+    transition: all 0.3s ease;
   }
 
   .social-icon:hover {
     opacity: 1;
-    transform: translateY(-2px);
+    background: rgba(184,150,62,0.1);
+    transform: translateY(-2px) scale(1.05);
   }
 
   /* ── FOOTER ── */
@@ -932,10 +926,9 @@ display:block;
 
 <section class="closing reveal">
   <div class="closing-inner">
-    <div class="closing-line"></div>
-    <h3>Enduring Capital</h3>
+    <h3>Since Thought, not Trend</h3>
 
-    <a href="https://x.com/nandayadvisory" target="_blank" class="social-icon">
+    <a href="https://x.com/nandayadvisory" target="_blank" class="social-icon" title="View Nanday on X">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
         <path d="M18.9 2H22L14.5 10.3L23 22H16.3L11 14.8L4.7 22H1.6L9.6 13.1L1.5 2H8.4L13.2 8.6L18.9 2ZM17.5 20H19.2L7.5 3.9H5.7L17.5 20Z" fill="currentColor"/>
       </svg>
