@@ -544,9 +544,15 @@
 
   /* ───────── CLOSING SECTION ───────── */
   .closing {
+    border-top: 1px solid rgba(184,150,62,0.15);
     padding: 120px 20px 80px;
     text-align: center;
-    background: #0d0d0b;
+    background: transparent;
+  }
+  @keyframes lineReveal {
+    to {
+      width: 80px;
+    }
   }
 
   .closing-inner {
@@ -924,7 +930,7 @@ display:block;
   </div>
 </section>
 
-<section class="closing">
+<section class="closing reveal">
   <div class="closing-inner">
     <div class="closing-line"></div>
     <h3>Enduring Capital</h3>
