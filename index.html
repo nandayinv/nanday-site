@@ -72,14 +72,14 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.6rem;
     font-weight: 300;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     color: var(--cream);
     text-decoration: none;
     text-transform: uppercase;
   }
   .nav-logo span { color: var(--gold); }
   .nav-links {
-    display: flex; gap: 42px; list-style: none;
+    display: flex; gap: 32px; list-style: none;
   }
   .nav-links a {
     font-family: 'Tenor Sans', sans-serif;
@@ -644,6 +644,25 @@
   .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--cream); transition: all 0.3s; }
 
+  @media (max-width: 1200px) {
+    .nav-logo {
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      gap: 24px;
+    }
+
+    nav {
+      padding: 14px 32px;
+    }
+
+    nav.scrolled {
+      padding: 10px 32px;
+    }
+  }
+  
   @media (max-width: 900px) {
     nav { padding: 22px 28px; }
     nav.scrolled { padding: 16px 28px; }
